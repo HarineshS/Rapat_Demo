@@ -6,7 +6,7 @@ public class BalloonSpawner : MonoBehaviour
 {
     public GameObject balloonPrefab; // Prefab of the balloon object
     public float spawnRate = 1f; // Balloons spawn every 1 second (adjust as needed)
-    public float spawnHeight = -5f; // Balloons spawn from this height
+    public float spawnHeight = -18f; // Balloons spawn from this height
     public float moveSpeed = 2f; // Speed at which balloons move upwards
     public Transform platformTransform; // Transform of the platform object (reference)
 
@@ -29,10 +29,10 @@ public class BalloonSpawner : MonoBehaviour
     void SpawnBalloon()
     {
         // Create a new balloon object from the prefab
-        GameObject balloon = Instantiate(balloonPrefab, new Vector3(Random.Range(-5f, 5f), spawnHeight, 0), Quaternion.identity);
+        GameObject balloon = Instantiate(balloonPrefab, new Vector3(Random.Range(-1.6f, 1.6f), spawnHeight, 0), Quaternion.identity);
 
         // Move the balloon upwards over time
-        balloon.GetComponent<Rigidbody2D>().velocity = new Vector2(0, moveSpeed);
+        //balloon.GetComponent<Rigidbody2D>().velocity = new Vector2(0, moveSpeed);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

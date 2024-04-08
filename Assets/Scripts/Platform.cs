@@ -8,12 +8,23 @@ public class Platform : MonoBehaviour
 
     private Vector3 touchPosition;
     private bool isDragging = false;
+    private Rigidbody2D rb;
+
+    private void Start() 
+    {
+        rb = GetComponent<Rigidbody2D>();
+        
+    }
 
     void Update()
     {
         // Handle keyboard movement for testing on PC
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
+        rb.velocity = Vector3.zero;
+
+
 
         transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * moveSpeed * Time.deltaTime);
 
