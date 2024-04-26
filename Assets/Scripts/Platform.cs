@@ -4,16 +4,43 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Adjust speed as needed
+    public static Platform Instance { get; private set; }
 
+    public float MoveSpeed
+    {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
+    }
+    public float HealthUpdate
+    {
+        get { return health; }
+        set { health = value; }
+    }
+    public float health = 100f;
+
+    public float moveSpeed = 5f; // Adjust speed as needed
     private Vector3 touchPosition;
     private bool isDragging = false;
     private Rigidbody2D rb;
 
-    private void Start() 
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Multiple Platform instances detected. Make sure there's only one in the scene.");
+            Destroy(gameObject);
+        }
+
         rb = GetComponent<Rigidbody2D>();
-        
+    }
+
+    public void IncreaseMoveSpeedByPercentage(float percentage)
+    {
+        moveSpeed *= 1 + percentage / 100f;
     }
 
     void Update()
@@ -23,8 +50,6 @@ public class Platform : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         rb.velocity = Vector3.zero;
-
-
 
         transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * moveSpeed * Time.deltaTime);
 

@@ -1,11 +1,46 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlatformMovement : MonoBehaviour
 {
+
+    public static PlatformMovement Instance { get; private set; }
     // Adjust this speed to control how fast the player follows the cursor
     public float followSpeed = 5f;
 
+
+
     private bool isClicked = false;
+    public float MoveSpeed
+    {
+        get { return followSpeed; }
+        set { followSpeed = value; }
+    }
+    public float HealthUpdate
+    {
+        get { return health; }
+        set { health = value; }
+    }
+    public float health = 100f;
+
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Multiple Platform instances detected. Make sure there's only one in the scene.");
+            Destroy(gameObject);
+        }
+    }
+
+    public void IncreaseMoveSpeedByPercentage(float percentage)
+    {
+        followSpeed *= 1 + percentage / 100f;
+    }
 
     void Update()
     {

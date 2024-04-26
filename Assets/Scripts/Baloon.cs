@@ -2,16 +2,21 @@ using UnityEngine;
 
 public class Balloon : MonoBehaviour
 {
-    // This method is called when a collision occurs
-  
 
+    
+    // This method is called when a collision occurs
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("Player"))
         {
             // Destroy the balloon GameObject
-            Destroy(gameObject);
+            
             // Increase Score Here
+            PlatformMovement.Instance.HealthUpdate -= 10f;
+            PlatformMovement.Instance.IncreaseMoveSpeedByPercentage(-5f);
+            RandomSpawner.Instance.reduceTime(10f);
+
+            Destroy(gameObject);
         }
         
     }

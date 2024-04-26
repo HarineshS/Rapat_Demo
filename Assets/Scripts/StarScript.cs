@@ -27,8 +27,11 @@ public class StarScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Destroy the balloon GameObject
+            
+            PlatformMovement.Instance.IncreaseMoveSpeedByPercentage(10f);
+            PlatformMovement.Instance.HealthUpdate += 15f;
+            RandomSpawner.Instance.addTime(20f);
             Destroy(gameObject);
-            // Increase Score Here
         }
         
     }
