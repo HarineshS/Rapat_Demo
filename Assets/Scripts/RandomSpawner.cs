@@ -13,6 +13,7 @@ public class RandomSpawner : MonoBehaviour
     public Transform[] greenSpawnPoints;
     public GameObject[] bluePrefabs;
     public Transform[] blueSpawnPoints;
+    
 
     public float minSpawnInterval = 1f; // Minimum time between spawns
     public float maxSpawnInterval = 3f; // Maximum time between spawns

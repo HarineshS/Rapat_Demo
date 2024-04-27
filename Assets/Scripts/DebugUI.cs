@@ -8,10 +8,12 @@ public class DebugUI : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI timerText;
     public RandomSpawner randomSpawner;
+    public GameObject GameOverPanel;
 
     private void Awake()
     {
         Time.timeScale =1;
+        GameOverPanel.SetActive(false);
     }
 
     private void Update()
@@ -27,7 +29,10 @@ public class DebugUI : MonoBehaviour
             if(randomSpawner.timeRemaining == 0f)
             {
                 Time.timeScale = 0;
+                GameOverPanel.SetActive(true);
             }
+
+
 
             
         }

@@ -5,4 +5,5 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public int currentLevel = 1;
+    public int Score = 0; 
 }
